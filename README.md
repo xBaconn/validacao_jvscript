@@ -21,11 +21,27 @@
             display: none;
         }
 
+        .principal0 {
+            width: 100%;
+            height: 1500px;
+            
+           
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .principal0 .h2{
+            color: antiquewhite;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            height: 40px;
+            width: 40%;
+            
+        }
+
         .principal {
             width: 80%;
             background-color: rgb(199, 58, 58);
             border: solid 2px;
-            border-color: rgb(0, 0, 0);
+            border-color: rgb(20, 20, 20);
         }
 
         .itens {
@@ -34,47 +50,74 @@
             flex-direction: row;
             padding: 5px;
         }
-
-        .input-group{
-            justify-content: space-around;
-            flex-direction: justify;
-            padding: 5px;
+             
+        .btn {
+            
+    border: none;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .3s;
+    border-radius: 5px;
+    background-color: rgb(191, 230, 248);
         }
 
         body {
             
             background-attachment: fixed;
             background-size: 100%;
-            background-image: url("agenda.jpg");
+            background-image: url("11.png");
             background-repeat: no-repeat;
-            background-color: rgb(0, 0, 0);
+            background-color: rgb(89, 120, 221);
         }
+
+
+
+
     </style>
 </head>
 
 <body>
     <center>
-        <div class="principal" id="d1">
+        <div class="principal0" id="d1">
             <div>        
-                <h2>Login</h2>
-                <div class="input-group"> 
-                    Nome:
-                    <input type="text" placeholder="Digite seu nome"  required>
+                <h2 class="h2">CADASTRO</h2>
+                <div class="input-group" style="color: antiquewhite;"> 
+                  <b>Nome:</b> 
+                    <br>
+                    <input id="nm" type="text" maxlength="10" placeholder="Digite seu nome"  required >
                 </div>
                 <br>
-                
-                <div class="input-group">
-                    Senha:
+
+                <div class="input-group" style="color: antiquewhite;" >
+                   <b>Email: </b>
+                    <br>
+                    <input id="lg" type="email" minlength="10" placeholder="Digite seu email"  required>
+                </div>
+                <br>
+
+                <div class="input-group" style="color: antiquewhite;">
+                   <b> Login: </b> 
+                    <br>
+                    <input id="lg" type="email" minlength="10" placeholder="Digite seu login"  required>
+                </div>
+                <br>
+
+
+                <div class="input-group" style="color: antiquewhite;">
+                    <b> Senha:</b>
+                    <br>
                     <input id="s0" minlength="8" type="password" placeholder="Digite sua senha" required>
                 </div>
                 <br>
                 
-                <div class="input-group" >
-                    Confirme sua senha:
-                    <input id="s1" minlength="8" type="password" placeholder="Digite sua senha"  required>
+                <div class="input-group" style="color: antiquewhite;" >
+                  <b>Confirme sua senha:</b>  
+                    <br>
+                    <input id="s1" minlength="8" type="password" placeholder="Confirme sua senha"  required>
                 </div>
                 <br>
-                <button class="btn-blue" onclick="mostrar()">Fazer Login</button>
+                <button class="btn" onclick="login()">Cadastre-se</button>
                 <br>
                 <br>     
             </div>
@@ -119,20 +162,24 @@
                 var botao = document.createElement('button');
                 var box = document.createElement('input');
 
-                //var caixa = document.createElement("input type='checkbox'");
+                
 
                 divNova.className = "itens";
+
                 box.setAttribute("type", "checkbox");
 
                 botao.innerHTML = "Remover";
+                
                 botao.addEventListener("click",
                     function () {
                         divNova.remove();
                     })
+
                 divNova.appendChild(box);
+                
                 box.addEventListener('change', function () {
                     if (this.checked) {
-                        //divNova.style.textDecoration = "line-through";
+                        divNova.style.textDecoration = "line-through";
                         divNova.setAttribute("id", "espaco");
                         divNova.className = "marcados";
                     } else {
@@ -151,18 +198,41 @@
         }
 
         function limpar() {
-
-            document.getElementsByClassName('marcados')[0].remove();
-
+            for(var a = 0 ; a <= 10 ; a++)
+            document.getElementsByClassName('marcados')[a].remove();
+            a = 0;
         } 
+
+        function login(){
+            var senha0 = document.getElementById('s0').value;
+            var senha1 = document.getElementById('s1').value;
+            var name = document.getElementById('nm').value;
+            var login = document.getElementById('lg').value;
+            
+            var conf = 1;
+            if( name == 0 ){
+                alert("o nome deve ser preenchido");
+            }else{
+                conf = conf+1;
+            }
+            if(login.includes('@')){
+               
+            }else{
+                alert("coloque um email valido")
+            }
+            if(conf == 3 && senha0 == senha1 ){
+                document.getElementById("d1").style.display = "none";
+                document.getElementById("d2").style.display = "inline";
+            }
+            //else if(senha0 == senha1){
+            //    alert("senhas diferentes");
+            //}   
+        }
 
         function mostrar(){
             var senha0 = document.getElementById('s0').value;
             var senha1 = document.getElementById('s1').value;
             
-            var tests0 = senha0.value;
-            if(length(tests0) >= 8 ){
-
                 if( senha0 == senha1){
                     document.getElementById("d1").style.display = "none";
                     document.getElementById("d2").style.display = "inline";
@@ -170,10 +240,7 @@
                 else{
                     alert("senhas diferentes");
                 }
-            }else{
-                alert("a senha contém menos de 8 caracteres");
-            }
-    }    
+        }    
     </script>
 </body>
 
